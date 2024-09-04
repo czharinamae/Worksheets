@@ -1,0 +1,181 @@
+---
+title: "RWorksheet_Jacildo#1"
+author: "Czharina Mae Jacildo"
+date: "2024-09-04"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. 
+a. How many data points?
+- There are 34 data points.
+
+b. Write the R code and its output.
+```{r}
+age <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29,
+35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 42, 53, 41, 51, 35, 24, 33, 41.)
+points <- length(age)
+print(points)
+```
+
+2. Find the reciprocal of the values for age.
+Write the R code and its output.
+```{r}
+reciprocal_age <- 1 / age
+print(reciprocal_age)
+```
+3. What happen to the new_age?
+- It creates a new vector combining 2 age vectors with 0 in the middle.
+```{r}
+new_age <- c(age, 0, age)
+print(new_age)
+```
+4. Sort the values for age.
+```{r}
+age <- sort(age)
+print(age)
+```
+5. Find the minimum and maximum value for age.
+```{r}
+minimum_age <- min(age)
+maximum_age <- max(age)
+print(minimum_age)
+print(maximum_age)
+```
+6. How many data points?
+- There are 12 data points.
+
+b. Write the R code and its output.
+```{r}
+data <- c(2.4, 2.8, 2.1, 2.5, 2.4, 2.2, 2.5, 2.3, 2.5, 2.3, 2.4, 2.7)
+points <- length(data)
+print(points)
+
+```
+7. Generates a new vector for data where you double every value of the data. | What
+happen to the data?
+- The elements in the data vector were multiplied by two.
+```{r}
+double_nv <- data * 2
+print(double_nv)
+
+```
+8.1 Integers from 1 to 100.
+```{r}
+integers <- seq(1, 100)
+print(integers)
+```
+8.2 Numbers from 20 to 60
+```{r}
+numbers <- seq(20, 60)
+print(numbers)
+```
+*8.3 Mean of numbers from 20 to 60
+```{r}
+mean_numbers <- mean(20:60)
+print(mean_numbers)
+```
+*8.4 Sum of numbers from 51 to 91
+```{r}
+sum_numbers <- sum(51:91)
+print(sum_numbers)
+```
+*8.5 Integers from 1 to 1,000
+```{r}
+ints <- seq(1:1000)
+print(ints)
+```
+a. How many data points from 8.1 to 8.4?
+- 143 data points
+
+b. Write the R code and its output from 8.1 to 8.4.
+```{r}
+dp1 <- length(integers) 
+dp2 <- length(numbers) 
+dp3 <- length(mean_numbers) 
+dp4 <- length(sum_numbers) 
+data_points <- sum(dp1+dp2+dp3+dp4)
+print(data_points)
+```
+c. For 8.5 find only maximum data points until 10.
+```{r}
+m <- 1:1000
+mx <- max(m[t <- 10])
+print(mx)
+```
+9. Print a vector with the integers between 1 and 100 that are not divisible by 3, 5 and 7 using filter option.
+```{r}
+Filter(function(i) { all(i %% c(3,5,7) != 0) }, seq(100))
+```
+10. Generate a sequence backwards of the integers from 1 to 100.
+Write the R code and its output.
+```{r}
+backward <- rev(1:100)
+print(backward)
+```
+11. List all the natural numbers below 25 that are multiples of 3 or 5.
+Find the sum of these multiples.
+```{r}
+nums <- 1:24
+multiples <- nums[nums%%3==0|nums%%5==0]
+print(nums)
+
+sum_multiples <- sum(multiples)
+print(sum_multiples)
+```
+
+a. How many data points from 10 to 11?
+- 12 data points.
+
+b. Write the R code and its output from 10 and 11.
+```{r}
+dp10 <- length(multiples)
+dp11 <- 1
+total <- dp10 + dp11
+print(total)
+```
+12. Statements can be grouped together using braces ‘{’ and ‘}’. A group of statements
+is sometimes called a block. Single statements are evaluated when a new line is typed
+at the end of the syntactically complete statement. Blocks are not evaluated until a
+new line is entered after the closing brace.
+```{r}
+x <- {0 + x + 5 +}
+```
+Describe the output.
+- Error, it is incomplete
+
+13. *Set up a vector named score, consisting of 72, 86, 92, 63, 88, 89, 91, 92, 75, 75 and 77. To access individual elements of an atomic vector, one generally uses the x[i] construction.
+Find x[2] and x[3]. Write the R code and its output.
+```{r}
+score <- c(72, 86, 92, 63, 88, 89, 91, 92, 75,
+75, 77)
+x2 <- score[2]
+x3 <- score[3]
+print(x2)
+print(x3)
+```
+
+14. *Create a vector a = c(1,2,NA,4,NA,6,7).
+```{r}
+a <- c(1,2,NA,4,NA,6,7)
+print(a)
+```
+a. Change the NA to 999 using the codes print(a,na.print="-999").
+```{r}
+print(a,na.print="-999")
+```
+b. Write the R code and its output. Describe the output.
+
+15. A special type of function calls can appear on the left hand side of the assignment
+operator as in > class(x) <- "foo".
+```{r}
+name = readline(prompt="Input your name: ")
+age = readline(prompt="Input your age: ")
+print(paste("My name is",name, "and I am",age ,"years old."))
+print(R.version.string)
+```
+What is the output of the above code?
+"My name is (name) and I am (age) years old." 
