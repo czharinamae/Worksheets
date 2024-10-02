@@ -1,0 +1,147 @@
+---
+title: "RWorksheet_Jacildo#3b"
+author: "Czharina Mae Jacildo"
+date: "2024-10-02"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Create a data frame using the table below.
+
+a. Write the codes.
+```{r}
+respondents <- c(1:20)
+sex <- c(2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2)
+fathers_occupation <- c(1, 3, 3, 3, 1, 2, 3, 1, 1, 1, 3, 2, 1, 3, 3, 1, 3, 1, 2, 1)
+person_at_home <- c(5, 7, 3, 8, 5, 9, 6, 7, 8, 4, 7, 5, 4, 7, 8, 8, 3, 11, 7, 6)
+siblings_at_school <- c(6, 4, 4, 1, 2, 1, 5, 3, 1, 2, 3, 2, 5, 5, 2, 1, 2, 5, 3, 2)
+type_of_houses <- c(1, 2, 3, 1, 1, 3, 3, 1, 2, 3, 2, 3, 2, 2, 3, 3, 3, 3, 3, 2)
+ 
+data <- data.frame(Respondents = respondents, Sex = sex, Fathers_Occupation = fathers_occupation, Person_at_Home = person_at_home, Siblings_at_School = siblings_at_school, Type_of_Houses = type_of_houses)
+print(data)
+```
+
+b. Describe the data. Get the structure or the summary of the data
+```{r}
+str(data)
+summary(data)
+```
+c. Is the mean number of siblings attending is 5?
+```{r}
+num <- c(siblings_at_school)
+mean(num)
+```
+- No
+
+d. Extract the 1st two rows and then all the columns using the subsetting functions. Write the codes and its output.
+```{r}
+data[1:2, ]
+```
+
+e. Extract 3rd and 5th row with 2nd and 4th column. Write the codes and its result.
+```{r}
+data[c(3, 5), c(2, 4)]
+```
+
+f. Select the variable types of houses then store the vector that results as types_houses. Write the codes.
+```{r}
+types_houses <- class(type_of_houses)
+print(type_of_houses)
+```
+
+g. Select only all Males respondent that their father occupation was farmer. Write the codes and its output.
+```{r}
+male_farmers <- data[data$Sex == 1 & data$Fathers_Occupation == 1, ]
+print(male_farmers)
+
+```
+
+h. Select only all females respondent that have greater than or equal to 5 number of siblings attending school. Write the codes and its outputs.
+```{r}
+females <-  data[data$Sex == 2 & data$Siblings_at_School >= 5, ]
+print(females)
+```
+
+2. Write a R program to create an empty data frame. Using the following codes:
+```{r}
+df = data.frame(Ints=integer(),
+
+Doubles=double(), Characters=character(),
+Logicals=logical(),
+Factors=factor(),
+stringsAsFactors=FALSE)
+
+print("Structure of the empty dataframe:")
+print(str(df))
+```
+a. Describe the results.
+- It shows an empty data frame with 0 rows and 5 columns. 
+
+3. Create a .csv file of this. Save it as HouseholdData.csv
+```{r}
+household_data <- data.frame(
+  Respondents = 1:10,
+  Sex = c("Male", "Female", "Female", "Male", "Male", "Female", "Female", "Male", "Female", "Male"),
+  Fathers_Occupation = c(1, 2, 3, 3, 1, 2, 2, 1, 1, 3),
+  Persons_at_Home = c(5, 7, 3, 8, 6, 4, 2, 4, 11, 6),
+  Siblings_at_School = c(5, 3, 3, 5, 6, 3, 1, 2, 6, 6),
+  Types_of_Houses = c("Wood", "Concrete", "Concrete", "Wood", "Semi-concrete", "Semi-concrete", "Wood", "Semi-concrete", "Semi-concrete", "Concrete")
+)
+print(household_data)
+write.csv(household_data, file = "HouseholdData.csv", row.names = FALSE)
+```
+
+a. Import the csv file into the R environment. Write the codes.
+```{r}
+household_data <- read.csv("HouseholdData.csv")
+print(household_data)
+```
+
+b. Convert the Sex into factor using factor() function and change it into integer.[Legend:Male = 1 and Female = 2]. Write the R codes and its output.
+```{r}
+household_data$Sex <- factor(household_data$Sex, levels = c("Male", "Female"), labels = c(1, 2))
+
+household_data$Sex <- as.integer(household_data$Sex)
+print(household_data)
+```
+
+c. Convert the Type of Houses into factor and change it into integer. [Legend: Wood = 1; Congrete = 2; Semi-Congrete = 3]. Write the R codes and its output.
+```{r}
+household_data$Types_of_Houses <- factor(household_data$Types_of_Houses, levels = c("Wood", "Concrete", "Semi-concrete"), labels = c(1, 2, 3))
+
+household_data$Types_of_Houses <- as.integer(household_data$Types_of_Houses)
+
+print(household_data)
+```
+
+d. On father’s occupation, factor it as Farmer = 1; Driver = 2; and Others = 3. What is the R code and its output?
+```{r}
+household_data$Fathers_Occupation <- factor(household_data$Fathers_Occupation, levels = c(1, 2, 3), labels = c("Farmer", "Driver", "Others"))
+
+household_data$Fathers_Occupation <- as.integer(household_data$Fathers_Occupation)
+
+print(household_data)
+```
+
+e. Select only all females respondent that has a father whose occupation is driver. Write the codes and its output.
+```{r}
+female_driver_respondents <- subset(household_data, Sex == 2 & Fathers_Occupation == 2)
+print(female_driver_respondents)
+```
+
+f. Select the respondents that have greater than or equal to 5 number of siblings attending school. Write the codes and its output. 
+```{r}
+siblings5 <- subset(household_data, Siblings_at_School >= 5)
+print(siblings5)
+```
+
+4. Interpret the graph.
+
+- The graph represents the sentiments of tweets per day over several days from July 14, 2020, to July 21, 2020. The tweets are categorized into three sentiment types which is Negative (red), Neutral (yellow), and Positive (blue), with the bars showing the count of tweets for each sentiment on each date.
+
+The graph shows that most tweets are Negative each day, with fewer Positive tweets and Neutral tweets remaining steady.
+
+
