@@ -94,3 +94,82 @@ b. View the dataset. Write the R scripts and its result.
 ``` {r}
 print(excelData)
 ```
+
+6. Full Search
+a. Create an R Program that allows the User to randomly select numbers from 1 to 50. Then display the chosen number. If the number is beyond the range of the selected choice, it will have to display a string “The number selected is beyond the range of 1 to 50”. If number 20 is inputted by the User, it will have to display “TRUE”, otherwise display the input number.
+
+```{r}
+user <- readline(prompt = "Enter a number from 1 to 50: ")
+
+if (user < 1 || user > 50) {
+  cat("The number selected is beyond the range of 1 to 50\n")
+} else if (user == 20) {
+  cat("TRUE\n")
+} else {
+  print(user)
+}
+```
+
+7. Change
+a. Write a function that prints the minimum number of bills that must be paid, given the
+price of the snack.
+Input: Price of snack (a random number divisible by 50) Output: Minimum number of bills needed to purchase a snack.
+
+```{r}
+min_bills <- function(price) {
+  bills <- c(1000, 500, 200, 100, 50)
+  
+  count <- 0
+  
+  # Loop through each bill denomination
+  for (bill in bills) {
+    # Calculate how many bills of this denomination can be used
+    while (price >= bill) {
+      price <- price - bill
+      count <- count + 1
+    }
+  }
+  
+  # Print the result
+  cat("Minimum number of bills needed:", count, "\n")
+}
+
+# Example usage
+min_bills(250)
+```
+
+8. The following is each student’s math score for one semester. Based on this, answer the
+following questions.
+
+a. Create a dataframe from the above table. Write the R codes and its output.
+
+```{r}
+name <- c("Annie", "Thea", "Steve", "Hanna")
+grade1 <- c(85, 65, 75, 95) 
+grade2 <- c(65, 75, 55, 75)
+grade3 <- c(85, 90, 80, 100)
+grade4 <- c(100, 90, 85, 90)
+
+sem <- data.frame(Name = name, Grade1 = grade1, Grade2 = grade2, Grade3 = grade3, Grade4 = grade4)
+
+print(sem)
+```
+
+b. Without using the rowMean function, output the average score of students whose average math score over 90 points during the semester. write R code and its output.
+Example Output: Annie’s average grade this semester is 88.75.
+
+```{r}
+
+```
+
+c. Without using the mean function, output as follows for the tests in which the average score was less than 80 out of 4 tests. Example output: The nth test was difficult.
+```{r}
+
+```
+
+d. Without using the max function, output as follows for students whose highest score for a semester exceeds 90 points.
+Example Output: Annie’s highest grade this semester is 95.
+```{r}
+
+```
+
