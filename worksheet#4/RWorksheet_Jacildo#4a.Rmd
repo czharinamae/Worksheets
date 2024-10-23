@@ -116,26 +116,7 @@ price of the snack.
 Input: Price of snack (a random number divisible by 50) Output: Minimum number of bills needed to purchase a snack.
 
 ```{r}
-min_bills <- function(price) {
-  bills <- c(1000, 500, 200, 100, 50)
-  
-  count <- 0
-  
-  # Loop through each bill denomination
-  for (bill in bills) {
-    # Calculate how many bills of this denomination can be used
-    while (price >= bill) {
-      price <- price - bill
-      count <- count + 1
-    }
-  }
-  
-  # Print the result
-  cat("Minimum number of bills needed:", count, "\n")
-}
 
-# Example usage
-min_bills(250)
 ```
 
 8. The following is each student’s math score for one semester. Based on this, answer the
