@@ -187,3 +187,68 @@ alexa <- read_excel("/cloud/project/worksheet#4/alexa_file.xlsx")
 print(alexa)
 ```
 
+b. Get the total number of each variations and save it into another object. Save the object as variations.RData. Write the R scripts. What is its result?
+```{r}
+library(dplyr)
+
+variations <- alexa %>%
+count(alexa$variation)
+
+save(variations, file = "/cloud/project/worksheet#4/variations.RData")
+load("variations.RData")
+
+print(variations)
+```
+
+c. From the variations.RData, create a barplot(). Complete the details of the chart which include the title, color, labels of each bar.
+
+```{r}
+load("variations.RData")
+
+barplot(variations$n, 
+        names.arg = variations$variation, 
+        col = "purple", 
+        main = "Count of Each Variation", 
+        xlab = "Variation", 
+        ylab = "Count", 
+        las = 2)
+```
+
+d. Create a barplot() for the black and white variations. Plot it in 1 frame, side by
+side. Complete the details of the chart.
+
+```{r}
+library(ggplot2)
+library(gridExtra)
+
+black_var <- data.frame(
+  variation = c("Black", "Black Plus", "Black Show", "Black Spot", "Black Dot"),
+  Count = c(250, 300, 200, 100, 500)
+)
+
+white_var <- data.frame(
+  variation = c("White", "White Dot", "White Plus", "White Show", "White Spot"),
+  Count = c(100, 150, 80, 90, 120)
+)
+
+plot_black <- ggplot(black_var, aes(x = variation, y = Count, fill = variation)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Black Variants", y = "Variants", x = "Total Numbers") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.y = element_text(size = 8)
+  )
+
+plot_white <- ggplot(white_var, aes(x = variation, y = Count, fill = variation)) +
+  geom_bar(stat = "identity") +
+  labs(title = "White Variants", y = "Variants", x = "Total Numbers") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.y = element_text(size = 8)  
+  )
+
+grid.arrange(plot_black, plot_white, ncol = 2)
+```
+
